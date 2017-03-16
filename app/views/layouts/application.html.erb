@@ -11,9 +11,11 @@
   <%= render 'layouts/top_nav' %>
 
   <% if current_user %>
+  <span>
     Signed in as <%= current_user.first_name %> | <%= link_to "Logout", 'sessions/:id', method: :delete %>
   <% else %>
     <%= link_to 'Login', '/sessions/new' %> | <%= link_to 'Signup', '/users/new' %>
+  </span>
   <% end %>
 
   <main class="container">

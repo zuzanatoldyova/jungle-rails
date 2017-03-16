@@ -1,0 +1,40 @@
+<p>Hi <%= @user.first_name %></p>
+  <div>
+    <p>Thank you for shopping with us this email is to inform you that your order has been confirmed.</p>
+    <table style="border-spacing: 10px;">
+      <tr align="left">
+        <th>Product</th>
+        <th>Unit Price</th>
+        <th>Quantity</th>
+        <th>Price</th>
+      </tr>
+      <tr>
+      <% @order.line_items.each do |item| %>
+        <% if product = Product.find_by(id: item.product_id) %>
+          <td>
+            <%= product.name%>
+          </td>
+          <td>
+            <%= product.price %>
+          </td>
+          <td>
+            <%= item.quantity %>
+          </td>
+          <td>
+            <%= item.total_price %>
+          </td>
+        <% end %>
+      </tr>
+      <% end %>
+      <tr align="left">
+        <th>
+          TOTAL:
+        </th>
+        <th></th>
+        <th></th>
+        <th>
+          <%= @order.total %>
+        </th>
+      </tr>
+    </table>
+  <div>

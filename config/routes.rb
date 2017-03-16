@@ -18,9 +18,6 @@ Rails.application.routes.draw do
     resources :categories, except: [:edit, :update, :show]
   end
 
-  # get '/signup' => 'users#new'
-  # post '/users' => 'users#create'
-
   resources :users
   resources :sessions
 

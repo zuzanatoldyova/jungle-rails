@@ -2,7 +2,12 @@
   <header>
     <%= link_to product do %>
       <%= image_tag product.image.thumb, alt: product.name %>
-      <h4><%= product.name %></h4>
+      <div>
+        <h4><%= product.name %></h4>
+        <% if product.reviews.any? %>
+          <p> Rating <%= product.reviews.average(:rating) %></p>
+        <% end %>
+      </div>
     <% end %>
   </header>
   <p class="description">

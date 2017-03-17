@@ -166,6 +166,7 @@ prod1.reviews.create!({
   description: "Really bad product",
   rating: 1
 })
+
 prod1.reviews.create!({
   user_id: user1.id,
   description: "Super comfy",

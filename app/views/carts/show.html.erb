@@ -3,7 +3,14 @@
   <header class="page-header">
     <h1>My Cart</h1>
   </header>
-  <% @cart_total = 0 %>
+  <% if cart.size == 0 %>
+    <div class="panel panel-default items">
+      <div class="panel-body">
+        <h2> Your cart is empty </h2>
+      </div>
+    </div>
+    <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>
+  <% else %>
     <div class="panel panel-default items">
       <table class="table table-bordered">
         <thead>
@@ -15,6 +22,7 @@
           </tr>
         </thead>
         <tbody>
+          <% @cart_total = 0 %>
           <% cart.each do |product_id, details| %>
             <%= render 'item', product_id: product_id, details: details %>
           <% end %>
@@ -31,29 +39,22 @@
         </tfoot>
       </table>
     </div>
-    <% if @cart_total == 0 %>
-      <div class="panel panel-default items">
-        <div class="panel-body">
-          <h2> Your cart is empty </h2>
-        </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <%= form_tag orders_path do %>
+          <script
+            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+            data-amount="<%= @cart_total * 100 %>"
+            data-name="Jungle"
+            data-description="Khurram Virani's Jungle Order"
+            data-locale="auto"
+            data-email="kvirani@gmail.com"
+            data-currency="cad">
+          </script>
+        <% end %>
       </div>
-      <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>
-    <% else %>
-      <div class="row">
-        <div class="col-xs-12">
-          <%= form_tag orders_path do %>
-            <script
-              src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-              data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-              data-amount="<%= @cart_total * 100 %>"
-              data-name="Jungle"
-              data-description="Khurram Virani's Jungle Order"
-              data-locale="auto"
-              data-email="kvirani@gmail.com"
-              data-currency="cad">
-            </script>
-          <% end %>
-        </div>
-      </div>
+    </div>
   <% end %>
 </section>

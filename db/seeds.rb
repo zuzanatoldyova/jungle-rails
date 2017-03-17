@@ -132,5 +132,86 @@ cat3.products.create!({
   price: 2_483.75
 })
 
+puts "Finding products"
+
+prod1 = Product.find(1)
+prod2 = Product.find(2)
+prod3 = Product.find(3)
+prod4 = Product.find(4)
+prod5 = Product.find(5)
+prod6 = Product.find(6)
+prod7 = Product.find(7)
+prod8 = Product.find(8)
+prod9 = Product.find(9)
+prod10 = Product.find(10)
+
+puts "Create users"
+user1 = User.create({
+  first_name: "Zuzana",
+  last_name: "Toldyova",
+  email: "zuzana@gmail.com",
+  password_digest: BCrypt::Password.create('1234')
+})
+
+user2 = User.create({
+  first_name: "Zuzi",
+  last_name: "Toldy",
+  email: "zuzi@gmail.com",
+  password_digest: BCrypt::Password.create('5678')
+})
+
+puts "Create reviews"
+prod1.reviews.create!({
+  user_id: user1.id,
+  description: "Really bad product",
+  rating: 1
+})
+prod1.reviews.create!({
+  user_id: user1.id,
+  description: "Super comfy",
+  rating: 4
+})
+
+prod2.reviews.create!({
+  user_id: user1.id,
+  description: "Fantastic",
+  rating: 5
+})
+
+prod2.reviews.create!({
+  user_id: user1.id,
+  description: "I don't like it",
+  rating: 2
+})
+
+prod3.reviews.create!({
+  user_id: user2.id,
+  description: "Best product",
+  rating: 4
+})
+
+prod4.reviews.create!({
+  user_id: user2.id,
+  description: "Love it!",
+  rating: 4
+})
+
+prod6.reviews.create!({
+  user_id: user2.id,
+  description: "Love it!",
+  rating: 4
+})
+
+prod6.reviews.create!({
+  user_id: user2.id,
+  description: "Love it!",
+  rating: 4
+})
+
+prod6.reviews.create!({
+  user_id: user1.id,
+  description: "Love it!",
+  rating: 4
+})
 
 puts "DONE!"

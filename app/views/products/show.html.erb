@@ -27,7 +27,7 @@
 
     <% if @product.reviews.any? %>
       <h4> Product reviews </h4>
-      <% @product.reviews.reverse.each do |review| %>
+      <% @product.reviews.order(created_at: :desc).each do |review| %>
         <%= render 'review', review: review %>
       <% end %>
     <% end %>

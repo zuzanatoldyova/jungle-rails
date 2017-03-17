@@ -14,7 +14,7 @@
   <span>
     Signed in as <%= current_user.first_name %> | <%= link_to "Logout", '/sessions/:id', method: :delete %>
   <% else %>
-    <%= link_to 'Login', '/sessions/new' %> | <%= link_to 'Signup', '/users/new' %>
+    <%= link_to 'Login', [:new, :session] %> | <%= link_to 'Signup', [:new, :user] %>
   </span>
   <% end %>
 

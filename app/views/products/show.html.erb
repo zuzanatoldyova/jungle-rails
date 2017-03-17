@@ -25,32 +25,15 @@
       </div>
     </div>
 
-    <h4> Product reviews </h4>
-    <% @product.reviews.reverse.each do |review| %>
-      <div class="row">
-        <div class="col-sm-8">
-          <dl class="dl-horizontal">
-            <dt>Username</dt>
-            <dd><%= User.find(review.user_id).first_name %></dd>
-            <dt>Description</dt>
-            <% if review.description %>
-              <dd><%= review.description %></dd>
-            <% else %>
-              <dd></dd>
-            <% end %>
-            <dt>Rating</dt>
-            <dd><%= review.rating %></dd>
-            <% if logged_in? && review.user_id == current_user.id %>
-              <dd>
-                <%= link_to fa_icon('trash'), [@product, review], class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %>
-              </dd>
-            <% end %>
-            </dl>
-        </div>
-      </div>
+    <% if @product.reviews.any? %>
+      <h4> Product reviews </h4>
+      <% @product.reviews.reverse.each do |review| %>
+        <%= render 'review', review: review %>
+      <% end %>
     <% end %>
     <% if current_user %>
       <div class="col-sm-4">
+        <h4>Rate this product</h4>
         <%= form_for [@product, @product.reviews.build] do |form| %>
           <div class="form-group">
             <%= form.label :description %>

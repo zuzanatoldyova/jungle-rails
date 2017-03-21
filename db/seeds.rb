@@ -161,8 +161,7 @@ user2 = User.create({
 })
 
 puts "Create reviews"
-prod1.reviews.create!({
-  user_id: user1.id,
+prod1.user2.reviews.create!({
   description: "Really bad product",
   rating: 1
 })

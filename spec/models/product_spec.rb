@@ -27,7 +27,7 @@ RSpec.describe Product, type: :model do
     it "doesn't validate a product without quantity" do
       @product.quantity = nil
       @product.valid?
-      expect(@product.errors.size).to eq(1)
+      expect(@product.errors.size).to be >= 1
     end
 
     it "doesn't validate a product without a category" do

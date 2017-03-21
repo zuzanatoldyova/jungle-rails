@@ -146,18 +146,20 @@ prod9 = Product.find(9)
 prod10 = Product.find(10)
 
 puts "Create users"
-user1 = User.create({
+user1 = User.create!({
   first_name: "Zuzana",
   last_name: "Toldyova",
   email: "zuzana@gmail.com",
-  password_digest: BCrypt::Password.create('1234')
+  password: '1234',
+  password_confirmation: '1234'
 })
 
-user2 = User.create({
+user2 = User.create!({
   first_name: "Zuzi",
   last_name: "Toldy",
   email: "zuzi@gmail.com",
-  password_digest: BCrypt::Password.create('5678')
+  password: '1234',
+  password_confirmation: '1234'
 })
 
 puts "Create reviews"

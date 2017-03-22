@@ -21,7 +21,7 @@ RSpec.feature "AddToCarts", type: :feature, js: true do
     find('article.product', match: :first).click_link('Add')
     sleep 5
     save_screenshot
-    expect(find_link('My Cart').text).to include("My Cart (1)")
+    expect(find_link('My Cart').text).to have_content("My Cart (1)")
   end
 
 end
